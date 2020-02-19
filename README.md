@@ -1,1 +1,1 @@
-# META
+# Meta Engineered Thinking Architecture
