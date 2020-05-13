@@ -1,6 +1,7 @@
 #########################################################################
 # Defines population and individual methods
 #########################################################################
+from structure import Module, Blueprint, StructureBuilder
 from controller_net import BlueprintController, ModuleController
 
 import torch
@@ -123,7 +124,7 @@ class Ecosystem:
 
         for n in range(self.population_size):
             mark = self.historical_marker.mark_module()
-            new_module = GraphOperator().random_module(global_configs, 
+            new_module = StructureBuilder().random_module(global_configs, 
                                                         possible_components, 
                                                         possible_complementary_components,
                                                         name=mark)
@@ -153,6 +154,9 @@ class Ecosystem:
         self.individuals = new_individuals
 
 class GeneticAlgorithm:
+    """
+    Main class which runs the overall algorithm to generate and train networks
+    """
     def __init__(self, trainloader, validationloader, input_shape, num_epochs = 10, pop_size = 5, num_generations = 20, initial_depth = 4):
         self.trainloader = trainloader
         self.validationloader = validationloader
