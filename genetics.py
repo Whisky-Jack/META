@@ -95,6 +95,7 @@ class Individual:
                 correct += (predicted == labels).sum().item()
         accuracy = ( correct / total)
         print('Accuracy of the network on the validation set: ', accuracy)
+        self.score = accuracy
         return accuracy
         
 
@@ -183,11 +184,17 @@ class GeneticAlgorithm:
 
         # Actual genetic algorithm loop
         for generation in range(num_generations):
-            print("Not Implemented")
-            # Crossover and mutate new population
             # Train and compute fitnesses
             for individual in ecosystem.individuals:
-                individual.fit()
+                individual.fit(self.trainloader)
+                individual.score(self.validationloader)
+            
+            # Crossover and mutate new population
+            if generation != num_generations:
+                module_controller.mutate_modules(ecosystem.modules)
+                blueprint_controller.mutate_blueprints(ecosystem.individuals)
+
+            
             # Update controllers
         
         # Return best performing network

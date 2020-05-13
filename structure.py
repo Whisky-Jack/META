@@ -25,7 +25,7 @@ class ComponentParameters(Enum):
     CONV2D = (nn.Conv2d, {"filters": ([8, 16], 'int'), "kernel": ([3, 5, 7], 'list'), "stride": ([1, 2, 3], 'list')})
     MAXPOOLING2D = (nn.MaxPool2d, {"kernel":[3, 5, 7]})
     FLATTEN = []
-    DENSE = (nn.Linear, {"units":128, "activation":"relu"})   # Dense size should be variable
+    DENSE = (nn.Linear, {"units":128, "activation":"relu"})   # TODO: Dense size should be variable
 
 
 class Component:
